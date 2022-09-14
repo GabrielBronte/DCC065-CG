@@ -27,29 +27,21 @@ scene.add( axesHelper );
 let plane = createGroundPlaneXZ(20, 20)
 scene.add(plane);
 
-// create a cube
-let cubeGeometry1 = new THREE.BoxGeometry(4, 4, 4);
-let cube1 = new THREE.Mesh(cubeGeometry1, material);
-// position the cube
-cube1.position.set(0.0, 2.0, 0.0);
-// add the cube to the scene
-scene.add(cube1);
+let colors = ['khaki', 'deeppink', 'darkblue'];
+let positionX = [-8 , 0 , 8];
+let positionZ = [-6 , 0 , 6];
 
-// create a cube
-let cubeGeometry2 = new THREE.BoxGeometry(3, 3, 3);
-let cube2 = new THREE.Mesh(cubeGeometry2, material);
-// position the cube
-cube2.position.set(5.0, 1.5, 5.0);
-// add the cube to the scene
-scene.add(cube2);
-
-// create a cube
-let cubeGeometry3 = new THREE.BoxGeometry(2, 2, 2);
-let cube3 = new THREE.Mesh(cubeGeometry3, material);
-// position the cube
-cube3.position.set(-5.0, 1.0, -5.0);
-// add the cube to the scene
-scene.add(cube3);
+positionZ.forEach(function (pos){
+  for(let i=0; i<3; i++){
+    // create a cube
+    let cubeGeometry = new THREE.BoxGeometry(4, 4, 4);
+    let cube = new THREE.Mesh(cubeGeometry, setDefaultMaterial(colors[i]));
+    // position the cube
+    cube.position.set(positionX[i], 2.0, pos);
+    // add the cube to the scene
+    scene.add(cube);
+  }
+});
 
 // Use this to show information onscreen
 let controls = new InfoBox();

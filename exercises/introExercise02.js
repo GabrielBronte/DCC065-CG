@@ -28,28 +28,28 @@ let plane = createGroundPlaneXZ(20, 20)
 scene.add(plane);
 
 // create a cube
-let cubeGeometry1 = new THREE.BoxGeometry(4, 4, 4);
-let cube1 = new THREE.Mesh(cubeGeometry1, material);
+let cubeGeometry = new THREE.BoxGeometry(4, 4, 4);
+let cube = new THREE.Mesh(cubeGeometry, setDefaultMaterial('khaki'));
 // position the cube
-cube1.position.set(0.0, 2.0, 0.0);
+cube.position.set(0.0, 2.0, 0.0);
 // add the cube to the scene
-scene.add(cube1);
+scene.add(cube);
 
 // create a cube
-let cubeGeometry2 = new THREE.BoxGeometry(3, 3, 3);
-let cube2 = new THREE.Mesh(cubeGeometry2, material);
+let sphereGeometry = new THREE.SphereGeometry(3, 32, 16);
+let sphere = new THREE.Mesh(sphereGeometry, setDefaultMaterial('deeppink'));
 // position the cube
-cube2.position.set(5.0, 1.5, 5.0);
+sphere.position.set(5.0, 3, 5.0);
 // add the cube to the scene
-scene.add(cube2);
+scene.add(sphere);
 
 // create a cube
-let cubeGeometry3 = new THREE.BoxGeometry(2, 2, 2);
-let cube3 = new THREE.Mesh(cubeGeometry3, material);
+let cylinderGeometry = new THREE.CylinderGeometry( 1.5, 1.5, 8, 32 );
+let cylinder = new THREE.Mesh(cylinderGeometry, setDefaultMaterial('darkblue'));
 // position the cube
-cube3.position.set(-5.0, 1.0, -5.0);
+cylinder.position.set(-5.0, 4.0, -5.0);
 // add the cube to the scene
-scene.add(cube3);
+scene.add(cylinder);
 
 // Use this to show information onscreen
 let controls = new InfoBox();
