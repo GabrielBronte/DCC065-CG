@@ -8,7 +8,7 @@ import {initRenderer,
         onWindowResize,
         createGroundPlaneXZ} from "../libs/util/util.js";
 
-let scene, renderer, camera, material, light, orbit;; // Initial variables
+let scene, renderer, camera, material, light, orbit; // Initial variables
 scene = new THREE.Scene();    // Create main scene
 renderer = initRenderer();    // Init a basic renderer
 camera = initCamera(new THREE.Vector3(0, 15, 30)); // Init camera in this position
@@ -27,29 +27,41 @@ scene.add( axesHelper );
 let plane = createGroundPlaneXZ(20, 20)
 scene.add(plane);
 
-// create a cube
-let cubeGeometry1 = new THREE.BoxGeometry(4, 4, 4);
-let cube1 = new THREE.Mesh(cubeGeometry1, material);
-// position the cube
-cube1.position.set(0.0, 2.0, 0.0);
-// add the cube to the scene
-scene.add(cube1);
+// create a table cover
+let cubeGeometry = new THREE.BoxGeometry(11, 0.3, 6);
+let cube = new THREE.Mesh(cubeGeometry, material);
+// position the table cover
+cube.position.set(0.0, 3.0, 0.0);
+// add the table cover to the scene
+scene.add(cube);
 
-// create a cube
-let cubeGeometry2 = new THREE.BoxGeometry(3, 3, 3);
-let cube2 = new THREE.Mesh(cubeGeometry2, material);
-// position the cube
-cube2.position.set(5.0, 1.5, 5.0);
-// add the cube to the scene
-scene.add(cube2);
+// create a chair leg
+let cylinderGeometry = new THREE.CylinderGeometry( 0.3, 0.3, 3, 32 );
+let cylinder1 = new THREE.Mesh(cylinderGeometry, material);
+// position the chair leg
+cylinder1.position.set(-5, -1.5, -2.5);
+// add the chair leg to the scene
+cube.add(cylinder1);
 
-// create a cube
-let cubeGeometry3 = new THREE.BoxGeometry(2, 2, 2);
-let cube3 = new THREE.Mesh(cubeGeometry3, material);
-// position the cube
-cube3.position.set(-5.0, 1.0, -5.0);
-// add the cube to the scene
-scene.add(cube3);
+let cylinder2 = new THREE.Mesh(cylinderGeometry, material);
+// position the chair leg
+cylinder2.position.set(5, -1.5, -2.5);
+// add the chair leg to the scene
+cube.add(cylinder2);
+
+let cylinder3 = new THREE.Mesh(cylinderGeometry, material);
+// position the chair leg
+cylinder3.position.set(-5, -1.5, 2.5);
+// add the chair leg to the scene
+cube.add(cylinder3);
+
+let cylinder4 = new THREE.Mesh(cylinderGeometry, material);
+// position the chair leg
+cylinder4.position.set(5, -1.5, 2.5);
+// add the chair leg to the scene
+cube.add(cylinder4);
+
+
 
 // Use this to show information onscreen
 let controls = new InfoBox();

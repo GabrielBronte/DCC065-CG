@@ -8,7 +8,7 @@ import {initRenderer,
         onWindowResize,
         createGroundPlaneXZ} from "../libs/util/util.js";
 
-let scene, renderer, camera, material, light, orbit;; // Initial variables
+let scene, renderer, camera, material, light, orbit; // Initial variables
 scene = new THREE.Scene();    // Create main scene
 renderer = initRenderer();    // Init a basic renderer
 camera = initCamera(new THREE.Vector3(0, 15, 30)); // Init camera in this position
@@ -27,29 +27,26 @@ scene.add( axesHelper );
 let plane = createGroundPlaneXZ(20, 20)
 scene.add(plane);
 
-// create a cube
-let cubeGeometry = new THREE.BoxGeometry(4, 4, 4);
-let cube = new THREE.Mesh(cubeGeometry, setDefaultMaterial('khaki'));
-// position the cube
-cube.position.set(0.0, 2.0, 0.0);
-// add the cube to the scene
-scene.add(cube);
+let angle = THREE.MathUtils.degToRad(-30);
+let sphereGeometry = new THREE.SphereGeometry(0.5, 32, 16);
 
-// create a cube
-let sphereGeometry = new THREE.SphereGeometry(3, 32, 16);
-let sphere = new THREE.Mesh(sphereGeometry, setDefaultMaterial('deeppink'));
-// position the cube
-sphere.position.set(5.0, 3, 5.0);
-// add the cube to the scene
-scene.add(sphere);
+for(let i=0; i<12; i++){
+  // create a sphere
+  let sphere = new THREE.Mesh(sphereGeometry, material);
+  // position the sphere
+  sphere.position.set(0, 1, 0);
+  sphere.rotateY(angle);
 
-// create a cube
-let cylinderGeometry = new THREE.CylinderGeometry( 1.5, 1.5, 8, 32 );
-let cylinder = new THREE.Mesh(cylinderGeometry, setDefaultMaterial('darkblue'));
-// position the cube
-cylinder.position.set(-5.0, 4.0, -5.0);
-// add the cube to the scene
-scene.add(cylinder);
+  angle += THREE.MathUtils.degToRad(-30);
+  sphere.translateZ(8);
+
+  // add the sphere to the scene
+  scene.add(sphere);
+
+  // Show axes (parameter is size of each axis)
+  //sphere.add(new THREE.AxesHelper( 3 ));
+}
+
 
 // Use this to show information onscreen
 let controls = new InfoBox();
