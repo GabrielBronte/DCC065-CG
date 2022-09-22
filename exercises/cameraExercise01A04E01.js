@@ -22,7 +22,7 @@ createTeapot( 2.0,  0.4,  0.0, Math.random() * 0xffffff);
 createTeapot(0.0,  0.4,  2.0, Math.random() * 0xffffff);  
 createTeapot(0.0,  0.4, -2.0, Math.random() * 0xffffff);    
 
-let camPos  = new THREE.Vector3(3, 4, 8);
+let camPos  = new THREE.Vector3(3.0, 4.0, 8.0);
 let camUp   = new THREE.Vector3(0.0, 1.0, 0.0);
 let camLook = new THREE.Vector3(0.0, 0.0, 0.0);
 var message = new SecondaryBox("");
@@ -38,9 +38,33 @@ render();
 function updateCamera()
 {
    // DICA: Atualize a câmera aqui!
+   if(keyboard.pressed("W")){
+      camLook.z += 0.1;
+      camera.lookAt(camLook);
+   }
+   if(keyboard.pressed("S")){
+      camLook.z -= 0.1;
+      camera.lookAt(camLook);
+   }
+   if(keyboard.pressed("D")){
+      camLook.x += 0.1;
+      camera.lookAt(camLook);
+   }
+   if(keyboard.pressed("A")){
+      camLook.x -= 0.1;
+      camera.lookAt(camLook);
+   }
+   if(keyboard.pressed("Q")){
+      camLook.y += 0.1;
+      camera.lookAt(camLook);
+   }
+   if(keyboard.pressed("E")){
+      camLook.y -= 0.1;
+      camera.lookAt(camLook);
+   }
 
-   message.changeMessage("Pos: {" + camPos.x + ", " + camPos.y + ", " + camPos.z + "} " + 
-                         "/ LookAt: {" + camLook.x + ", " + camLook.y + ", " + camLook.z + "}");
+   message.changeMessage("Pos: {" + camPos.x.toFixed(4) + ", " + camPos.y.toFixed(4) + ", " + camPos.z.toFixed(4) + "} " + 
+                         "/ LookAt: {" + camLook.x.toFixed(4) + ", " + camLook.y.toFixed(4) + ", " + camLook.z.toFixed(4) + "}");
 }
 
 function keyboardUpdate() {
@@ -48,6 +72,30 @@ function keyboardUpdate() {
    keyboard.update();
    
    // DICA: Insira aqui seu código para mover a câmera
+   if(keyboard.pressed("up")){
+      camPos.y += 0.02;
+      camera.position.set(camPos.x, camPos.y, camPos.z)
+   }
+   if(keyboard.pressed("down")){
+      camPos.y -= 0.02;
+      camera.position.set(camPos.x, camPos.y, camPos.z)
+   }
+   if(keyboard.pressed("right")){
+      camPos.x += 0.02;
+      camera.position.set(camPos.x, camPos.y, camPos.z)
+   }
+   if(keyboard.pressed("left")){
+      camPos.x -= 0.02;
+      camera.position.set(camPos.x, camPos.y, camPos.z)
+   }
+   if(keyboard.pressed("pageup")){
+      camPos.z += 0.02;
+      camera.position.set(camPos.x, camPos.y, camPos.z)
+   }
+   if(keyboard.pressed("pagedown")){
+      camPos.z -= 0.02;
+      camera.position.set(camPos.x, camPos.y, camPos.z)
+   }
    
    updateCamera();
 }
